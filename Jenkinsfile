@@ -1,12 +1,22 @@
 pipeline {
-    agent {
+   /* agent {
         docker {
             image 'maven:3-alpine'
             args '-v /root/.m2:/root/.m2'
         }
-    }
+    }*/
+    agent any
+
     stages {
-        stage('Build') {
+        stage('SonarQube analysis') {
+            def scannerHome = tool 'Scanner';
+            withSonarQubeEnv('My SonarQube Server') { // If you have configured more than one global server connection, you can specify its name
+                sh "${scannerHome}/bin/sonar-scanner"
+    }
+  }
+ 
+/*
+       stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
             }
@@ -26,5 +36,6 @@ pipeline {
                 sh './jenkins/scripts/deliver.sh'
             }
         }
-    }
+*/  
+  }
 }
