@@ -1,13 +1,13 @@
-pipeline {
+node {
    /* agent {
         docker {
             image 'maven:3-alpine'
             args '-v /root/.m2:/root/.m2'
         }
     }*/
-    agent any
 
-    stages {
+
+//    stages {
 
         stage('SonarQube analysis') {
             def scannerHome = tool 'Scanner';
@@ -38,5 +38,5 @@ pipeline {
             }
         }
 */  
-  }
+//  }
 }
