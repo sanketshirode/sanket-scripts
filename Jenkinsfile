@@ -9,10 +9,14 @@ node {
 
 //    stages {
 
+	stage('SCM') {
+            checkout scm
+        }
+
         stage('SonarQube analysis') {
             def scannerHome = tool 'Scanner';
             withSonarQubeEnv('Sonar') { // If you have configured more than one global server connection, you can specify its name
-                sh "${scannerHome}/bin/sonar-scanner"
+                sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=myproject -Dsonar.sources=./src"
     }
   }
  
