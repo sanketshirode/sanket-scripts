@@ -14,6 +14,7 @@ node {
         }
 
        stage('Build') {
+            def mvn = tool 'maven';
             sh 'mvn -B -DskipTests clean package'
         }
 
