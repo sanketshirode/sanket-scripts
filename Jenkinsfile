@@ -14,7 +14,7 @@ node {
         }
 
        stage('Build') {
-            sh 'mvn -B -DskipTests clean package'
+            sh '/var/jenkins_home/tools/hudson.tasks.Maven_MavenInstallation/maven/bin/mvn -B -DskipTests clean package'
         }
 
 	stage('SonarQube analysis') {
