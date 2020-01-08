@@ -22,7 +22,7 @@ node {
 	stage('SonarQube analysis') {
             def scannerHome = tool 'Scanner';
             withSonarQubeEnv('Sonar') { // If you have configured more than one global server connection, you can specify its name
-                sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=myproject-${PULL_REQUEST} -Dsonar.sources=./src -Dsonar.java.binaries=./target -Dsonar.github.pullRequest=${PULL_REQUEST} -Dsonar.github.repository=sanketshirode/sanket-scripts -Dsonar.github.login=sanketshirode -Dsonar.github.oauth=8893739de22620625c9fb6707a5d700e7381775b"
+                sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=myproject-${PULL_REQUEST} -Dsonar.sources=./src -Dsonar.java.binaries=./target -Dsonar.github.pullRequest=${PULL_REQUEST} -Dsonar.github.repository=sanketshirode/sanket-scripts -Dsonar.github.login=${env.GITHUB_LOGIN} -Dsonar.github.oauth=${env.GITHUB_TOKEN}"
     }
   }
  
